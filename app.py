@@ -6,7 +6,7 @@ import openai
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 st.set_page_config(page_title="Ask My Assistant", page_icon="💬")
-st.title("💬 Ask My Assistant")
+st.title("👊 The First (and last) Time You'll Use AI for this Course 👊")
 
 # Custom assistant instructions
 system_prompt = """
@@ -37,18 +37,18 @@ Ask a concise, clear question about the benefits of AI, receive the response, pa
 - Reinforce the value of personal effort.
 - Ask thoughtful questions promoting reflection on AI's role versus personal effort in learning.
 """
-initial_user_prompt = "Hi there! Let's talk about healthy AI usage. What do you think is the most beneficial aspect of using AI tools to help you with your course material?"
+initial_assistant_greeting = "Hi there! Let's talk about healthy AI usage. What do you think is the most beneficial aspect of using AI tools to help you with your course material?"
 
 # Session state
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {"role": "system", "content": system_prompt},
-        {"role": "user", "content": initial_user_prompt}
+        {"role": "assistant", "content": initial_assistant_greeting}
     ]
 
     # Get assistant's opening response
     response = openai.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4o",
         messages=st.session_state.messages
     )
     reply = response.choices[0].message.content
