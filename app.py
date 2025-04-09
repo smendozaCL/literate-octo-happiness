@@ -6,7 +6,7 @@ import openai
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 st.set_page_config(page_title="Ask My Assistant", page_icon="💬")
-st.title("👊 The First (and last) Time You'll Use AI for this Course 👊")
+st.title("The First (and last) Time You'll Use AI for this Course 👊👊👊")
 
 # Custom assistant instructions
 system_prompt = """
@@ -45,14 +45,6 @@ if "messages" not in st.session_state:
         {"role": "system", "content": system_prompt},
         {"role": "assistant", "content": initial_assistant_greeting}
     ]
-
-    # Get assistant's opening response
-    response = openai.chat.completions.create(
-        model="gpt-4o",
-        messages=st.session_state.messages
-    )
-    reply = response.choices[0].message.content
-    st.session_state.messages.append({"role": "assistant", "content": reply})
 
 # Show history
 for msg in st.session_state.messages[1:]:
