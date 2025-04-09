@@ -8,6 +8,13 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 st.set_page_config(page_title="Ask My Assistant", page_icon="💬")
 st.title("The First (and last) Time You'll Use AI for this Course 👊👊👊")
 
+if st.button("🔄 Reset Chat"):
+    st.session_state.messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "assistant", "content": initial_assistant_greeting}
+    ]
+    st.experimental_rerun()
+
 # Custom assistant instructions
 system_prompt = """
 Ask one bite-sized question at a time, focused on understanding the user's perspective on using AI in course completion. Upon receiving a response, paraphrase their answer briefly, then ask a concise mediative question to further the conversation toward concluding that using AI may not be the best choice for their educational goals.
