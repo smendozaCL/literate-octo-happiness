@@ -32,10 +32,11 @@ if user_input:
 
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=st.session_state.messages
-            )
-            reply = response["choices"][0]["message"]["content"]
+            response = openai.chat.completions.create(
+    model="gpt-4",
+    messages=st.session_state.messages
+)
+reply = response.choices[0].message.content
+
             st.write(reply)
             st.session_state.messages.append({"role": "assistant", "content": reply})
