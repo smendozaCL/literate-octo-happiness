@@ -5,15 +5,18 @@ import openai
 # Securely load API key
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-st.set_page_config(page_title="Ask My Assistant", page_icon="💬")
+st.set_page_config(page_title="Ask My Assistant", page_icon="👊")
 st.title("The First (and last) Time You'll Use AI for this Course 👊👊👊")
 
-if st.button("🔄 Reset Chat"):
-    st.session_state.messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "assistant", "content": initial_assistant_greeting}
-    ]
-    st.experimental_rerun()
+col1, col2 = st.columns([0.85, 0.15])
+with col2:
+    if st.button("🔄 Reset Chat"):
+        st.session_state.messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "assistant", "content": initial_assistant_greeting}
+        ]
+        st.experimental_rerun()
+
 
 # Custom assistant instructions
 system_prompt = """
