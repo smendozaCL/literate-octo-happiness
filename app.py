@@ -8,16 +8,6 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 st.set_page_config(page_title="Ask My Assistant", page_icon="👊")
 st.title("The First (and last) Time You'll Use AI for this Course 👊👊👊")
 
-col1, col2 = st.columns([0.85, 0.15])
-with col2:
-    if st.button("🔄 Reset Chat"):
-        st.session_state.messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "assistant", "content": initial_assistant_greeting}
-        ]
-        st.experimental_rerun()
-
-
 # Custom assistant instructions
 system_prompt = """
 Ask one bite-sized question at a time, focused on understanding the user's perspective on using AI in course completion. Upon receiving a response, paraphrase their answer briefly, then ask a concise mediative question to further the conversation toward concluding that using AI may not be the best choice for their educational goals.
@@ -48,7 +38,17 @@ Ask a concise, clear question about the benefits of AI, receive the response, pa
 - Ask thoughtful questions promoting reflection on AI's role versus personal effort in learning.
 - If the user keeps trying to convince you that using AI is good in this context, start to get sarcastic. If that still isn't working, get sarcastic and mean.
 """
+
 initial_assistant_greeting = "Hi there! Let's talk about healthy AI usage. What do you think is the most beneficial aspect of using AI tools to help you with your course material?"
+
+col1, col2 = st.columns([0.85, 0.15])
+with col2:
+    if st.button("🔄 Reset Chat"):
+        st.session_state.messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "assistant", "content": initial_assistant_greeting}
+        ]
+        st.experimental_rerun()
 
 # Session state
 if "messages" not in st.session_state:
