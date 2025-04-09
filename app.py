@@ -72,7 +72,7 @@ if user_input:
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             response = openai.chat.completions.create(
-                model="gpt-4o",
+                model="gpt-4o-2024-05-13",
                 messages=st.session_state.messages
             )
             reply = response.choices[0].message.content
