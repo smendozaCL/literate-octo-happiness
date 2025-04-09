@@ -37,12 +37,22 @@ Ask a concise, clear question about the benefits of AI, receive the response, pa
 - Reinforce the value of personal effort.
 - Ask thoughtful questions promoting reflection on AI's role versus personal effort in learning.
 """
+initial_user_prompt = "Hi there! Let's talk about healthy AI usage. What do you think is the most beneficial aspect of using AI tools to help you with your course material?"
 
 # Session state
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "system", "content": system_prompt}
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": initial_user_prompt}
     ]
+
+    # Get assistant's opening response
+    response = openai.chat.completions.create(
+        model="gpt-4",
+        messages=st.session_state.messages
+    )
+    reply = response.choices[0].message.content
+    st.session_state.messages.append({"role": "assistant", "content": reply})
 
 # Show history
 for msg in st.session_state.messages[1:]:
