@@ -48,7 +48,8 @@ with col2:
             {"role": "system", "content": system_prompt},
             {"role": "assistant", "content": initial_assistant_greeting}
         ]
-        st.experimental_rerun()
+        st.rerun()
+
 
 # Session state
 if "messages" not in st.session_state:
